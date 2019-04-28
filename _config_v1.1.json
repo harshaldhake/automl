@@ -1,0 +1,57 @@
+{
+  "classification": {
+    "sweeping_enabled": true,
+    "page_sampled_data_to_disk": true,
+    "run_sweeping_in_isolation": true,
+    "enabled_sweepers": [
+      {
+        "name": "TextWordEmbeddings",
+        "type": "binary",
+        "sampler": {
+          "id": "count",
+          "args": [],
+          "kwargs": {}
+        },
+        "estimator": "logistic_regression",
+        "scorer": "accuracy",
+        "baseline": {
+          "featurizers": [
+            {
+              "id": "string_cast",
+              "type": "text"
+            },
+            {
+              "id": "bow_transformer",
+              "type": "text"
+            }
+          ]
+        },
+        "experiment": {
+          "featurizers": [
+            {
+              "id": "string_cast",
+              "type": "text"
+            },
+            {
+              "id": "word_embeddings",
+              "type": "text",
+              "args": [],
+              "kwargs": {
+                "embeddings_name": "wiki_news_300d_1M_subword"
+              }
+            }
+          ],
+          "include_baseline": true
+        },
+        "column_purposes": [
+          {
+            "types": [
+              "text"
+            ]
+          }
+        ],
+        "epsilon": 0.01
+      }
+    ]
+  }
+}
